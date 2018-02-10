@@ -29,7 +29,7 @@ driver = webdriver.Chrome('C:/Users/My/chromedriver.exe')
 #assert "U.S. Agency for International Develpoment" in driver.title
 # Go to the page that we want to scrape
 driver.get("https://explorer.usaid.gov/query")
-time.sleep(90)   #during this time, apply filters: Set transaction type: Disbursements, 100 per page 
+time.sleep(90)   #during this time, apply filters: Set transaction type: Disbursements, 100 per page; Select Country: Regions 
 
 
 index=1
