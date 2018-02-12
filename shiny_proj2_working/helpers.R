@@ -7,7 +7,6 @@ f <- list(
 )
 
 
-##########################
 
 ########################line################################
 lineChart = function(data, country, year, trans) {
@@ -18,7 +17,7 @@ lineChart = function(data, country, year, trans) {
   
   m = filter(c, Fiscal_year==year)
  #######
-#########################line##################################  
+
      p= ggplot(c, aes(x = Fiscal_year, y = Total, group=Transaction_type)) +
      geom_line(aes(color=Transaction_type)) + geom_point(aes(color=Transaction_type)) +
      annotate('point', x=m$Fiscal_year, y=m$Total,  color='green', size=3)+
