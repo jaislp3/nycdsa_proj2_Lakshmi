@@ -1,9 +1,4 @@
-###########################Map#######################
-#regionschart= function(region){
-#  geo = stock.address%>% filter(Region==region)
-#leaflet(geo) %>% addTiles() %>%
-#  addMarkers(lng = ~longi, lat = ~lati,  popup = geo$popuptext)
-#}
+
 ###############All Charts#################################################
 f <- list(
   family = "Courier New, monospace",
@@ -44,12 +39,12 @@ lineChart = function(data, country, year, trans) {
   ggplotly(p)  %>% layout(yaxis=ytitle)
 } #line chart end    
       
- ####################row charts##########################       
+ ####################bar charts##########################       
 rsecChart = function(data, country, year) {    
 small=c(year, 2016, 2017, 2011)
   
   cfilter = data %>% 
-    filter(Region==country, Fiscal_year %in% small) %>%
+    filter(Region==country, Fiscal_year %in% small, Transaction_type=='Disbursements') %>%
     group_by(Sector, Fiscal_year) %>% 
       summarize(Total = sum(Current_amount)) %>%
       arrange(desc(Total))
@@ -66,7 +61,7 @@ small=c(year, 2016, 2017, 2011)
  p =ggplot(c, aes(x = Sector, y =Total, fill= Fiscal_Year)) +
         geom_col(position = 'dodge') + 
         #coord_flip()+
-        labs(title = 'Top Sectors', x="", y="") +
+        labs(title = 'Top Sectors-Disbursements', x="", y="") +
       theme(
         axis.text.x = element_blank(),
         axis.ticks = element_blank())
@@ -89,7 +84,7 @@ ggplotly(p)
 rimplChart = function(data, country, year) { 
   small = c(year, 2016, 2017, 2011)
   cfilter = data %>% 
-    filter(Region==country, Fiscal_year%in% small) %>%
+    filter(Region==country, Fiscal_year%in% small, Transaction_type=='Disbursements') %>%
   
     group_by(Implementing_agency, Fiscal_year) %>% 
     summarize(Total = sum(Current_amount)) %>%
@@ -106,7 +101,7 @@ rimplChart = function(data, country, year) {
   p =ggplot(c, aes(x =Implementing_agency , y =Total, fill=Fiscal_Year )) +
     geom_col(position='dodge') + 
     #coord_flip()+
-    labs(title = 'Top Implementing Agencies', x="", y="") +
+    labs(title = 'Top Implementing Agencies-Disbursements', x="", y="") +
     theme(
       axis.text.x = element_blank(),
       axis.ticks = element_blank())
@@ -152,14 +147,14 @@ linesecChart = function(data, sector, year, trans) {
   ggplotly(p) %>% layout(yaxis=ytitle)
 } #line chart end    
 
-###########################row charts###############################
+###########################bar charts###############################
 
 
 #rcountrychart
 rcountryChart = function(data, sector, year) {    
   small=c(year, 2016, 2017, 2011)
   cfilter = data %>% 
-    filter(Sector==sector, Fiscal_year%in%small) %>%
+    filter(Sector==sector, Fiscal_year%in%small, Transaction_type=='Disbursements') %>%
     group_by(Region, Fiscal_year) %>% 
       summarize(Total = sum(Current_amount)) %>%
       arrange(desc(Total))
@@ -175,7 +170,7 @@ rcountryChart = function(data, sector, year) {
   p =ggplot(c, aes(x =Region , y =Total, fill=Fiscal_Year)) +
     geom_col(position='dodge') + 
     #coord_flip()+
-    labs(title = 'Top Regions', x="", y="") +
+    labs(title = 'Top Regions-Disbursements', x="", y="") +
     theme(
       axis.text.x = element_blank(),
       axis.ticks = element_blank())
@@ -197,7 +192,7 @@ ggplotly(p)
 rsecimplChart = function(data, sector, year) { 
   small = c(year, 2016, 2017, 2011)
   cfilter = data %>% 
-    filter(Sector==sector, Fiscal_year%in%small) %>%
+    filter(Sector==sector, Fiscal_year%in%small, Transaction_type=='Disbursements') %>%
     group_by(Implementing_agency, Fiscal_year) %>% 
       summarize(Total = sum(Current_amount)) %>%
       arrange(desc(Total))
@@ -215,7 +210,7 @@ rsecimplChart = function(data, sector, year) {
     geom_col(position='dodge') + 
     #coord_flip()+
     #scale_x_continuous(limits=c(0, max(c$Total) ))+
-    labs(title = 'Top Implementing Agencies', x="", y="")+
+    labs(title = 'Top Implementing Agencies-Disbursements', x="", y="") +
     theme(
       axis.text.x = element_blank(),
       axis.ticks = element_blank())
