@@ -1,9 +1,4 @@
-###########################Map#######################
-#regionschart= function(region){
-#  geo = stock.address%>% filter(Region==region)
-#leaflet(geo) %>% addTiles() %>%
-#  addMarkers(lng = ~longi, lat = ~lati,  popup = geo$popuptext)
-#}
+
 ###############All Charts#################################################
 f <- list(
   family = "Courier New, monospace",
@@ -44,7 +39,7 @@ lineChart = function(data, country, year, trans) {
   ggplotly(p)  %>% layout(yaxis=ytitle)
 } #line chart end    
       
- ####################row charts##########################       
+ ####################bar charts##########################       
 rsecChart = function(data, country, year) {    
 small=c(year, 2016, 2017, 2011)
   
@@ -152,7 +147,7 @@ linesecChart = function(data, sector, year, trans) {
   ggplotly(p) %>% layout(yaxis=ytitle)
 } #line chart end    
 
-###########################row charts###############################
+###########################bar charts###############################
 
 
 #rcountrychart
@@ -215,7 +210,11 @@ rsecimplChart = function(data, sector, year) {
     geom_col(position='dodge') + 
     #coord_flip()+
     #scale_x_continuous(limits=c(0, max(c$Total) ))+
+<<<<<<< HEAD
     labs(title = 'Top Implementing Agencies-Disbursements', x="", y="")+
+=======
+    labs(title = 'Top Implementing Agencies-Disbursements', x="", y="") +
+>>>>>>> 6188a4ecdda228e99aa7eacb9eb9b413cb1e56a9
     theme(
       axis.text.x = element_blank(),
       axis.ticks = element_blank())
