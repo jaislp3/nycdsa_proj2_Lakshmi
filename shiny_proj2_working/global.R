@@ -30,12 +30,6 @@ transactions = unique(us_aid$Transaction_type)
 
 colnames(us_aid)[2]="Region"
 ###########################################################################
-small=c(2016, 2001)
-c=us_aid %>% 
-  filter(Region=='East Asia and Oceania Region', Fiscal_year%in% small) %>%
-  group_by(Sector, Fiscal_year) %>% 
-  summarize(Total = sum(Current_amount)) %>%
-  arrange(desc(Total))
-ggplot(c, aes(x=Sector, y=Total, fill=as.character(Fiscal_year))) +
-  geom_col(position='dodge')+
-  coord_flip()
+
+
+
