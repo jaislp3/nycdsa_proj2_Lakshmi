@@ -134,8 +134,9 @@ top agencies, contributing to each region in top sectors.'),
              
              fluidRow(
                box(
-                 plotlyOutput('line', width='100%'),
-                 width=27
+                 plotlyOutput('line', width='100%', height='100%'),
+                 width=27,
+                 height=500
                )       
              ),
              
@@ -206,8 +207,9 @@ top agencies, contributing to each region in top sectors.'),
       
       fluidRow(
         box(
-          plotlyOutput('linesec', width='100%'),
-          width=27
+          plotlyOutput('linesec', width='100%', height='100%'),
+          width=27,
+          height=500
         )       
       ),
       
