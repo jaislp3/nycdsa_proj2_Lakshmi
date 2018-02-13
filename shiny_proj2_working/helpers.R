@@ -18,19 +18,18 @@ lineChart = function(data, country, year, trans) {
   
   m = filter(c, Fiscal_Year==year)
   
-     p= ggplot(c, aes(x = Fiscal_Year, y = Total, group=Transaction_type)) +
+  p= ggplot(c, aes(x = Fiscal_Year, y = Total, group=Transaction_type)) +
      geom_line(aes(color=Transaction_type)) + geom_point(aes(color=Transaction_type)) +
      annotate('point', x=m$Fiscal_Year, y=m$Total,  color='green', size=3)+
      #annotate('text', x=m$Fiscal_year,y=m$Total+m$Total/10)+
-    #label = as.character(m$Total)
      labs(title =  "Line Graph for Seventeen Years", x='Fiscal Year') +
-      theme(axis.text.x  = element_text(size=8, angle=45))+
-       theme(axis.title.x = element_text(margin = unit(c(14, 0, 0, 0), "mm") ))
+     theme(axis.text.x  = element_text(size=8, angle=45))+
+      theme(axis.title.x = element_text(margin = unit(c(14, 0, 0, 0), "mm") ))
       
       #axis.ticks = element_blank()
      #print (p)
      #xtitle <- list(title = "Fiscal Year", tickangle=45, titlefont=f)
-     ytitle <- list(
+   ytitle <- list(
        title = "Total Transaction (USD)",
        tickangle=45,
        titlefont = f
@@ -41,14 +40,14 @@ lineChart = function(data, country, year, trans) {
       
  ####################row charts##########################       
 rsecChart = function(data, country, year) {    
-small=c(year, '2016', '2011')
+  small=c(year, '2016', '2011')
   
   cfilter = data %>% 
     filter(Region==country, Fiscal_Year%in% small, Transaction_type=='Disbursements') %>%
-    group_by(Sector, sect, Fiscal_Year) %>% 
-      summarize(Total = sum(Current_amount)) %>%
-      filter(Total>100000) %>%
-      arrange(desc(Total))
+     group_by(Sector, sect, Fiscal_Year) %>% 
+     summarize(Total = sum(Current_amount)) %>%
+     filter(Total>100000) %>%
+     arrange(desc(Total))
   
  
   if (dim(cfilter)[1] >=20){
@@ -64,8 +63,8 @@ small=c(year, '2016', '2011')
       geom_col() + 
       facet_wrap(~Fiscal_Year)+
         #coord_flip()+
-        labs(title = 'Top Sectors-Disbursements', x='', y='') +
-        theme(axis.text.x  = element_text(size=8, angle=90)) 
+      labs(title = 'Top Sectors-Disbursements', x='', y='') +
+      theme(axis.text.x  = element_text(size=8, angle=90)) 
        # axis.ticks = element_blank())
  #xtitle <- list(
  #  title = "",
@@ -94,8 +93,7 @@ ggplotly(p) %>% layout(yaxis=ytitle, showlegend=FALSE)
 rimplChart = function(data, country, year) { 
   small = c(year, '2016', '2011')
   cfilter = data %>% 
-    filter(Region==country, Fiscal_Year%in% small, Transaction_type=='Disbursements') %>%
-  
+    filter(Region==country, Fiscal_Year%in% small, Transaction_type=='Disbursements') %>%  
     group_by(Implementing_agency, Impl, Fiscal_Year) %>% 
     summarize(Total = sum(Current_amount)) %>%
     filter(Total>100000) %>%
@@ -174,7 +172,7 @@ rcountryChart = function(data, sector, year) {
   cfilter = data %>% 
     filter(Sector==sector, Fiscal_Year%in%small, Transaction_type=='Disbursements') %>%
     group_by(Region, Fiscal_Year) %>% 
-      summarize(Total = sum(Current_amount)) %>%
+    summarize(Total = sum(Current_amount)) %>%
     filter(Total>100000) %>%
     arrange(desc(Total))
   
@@ -222,7 +220,7 @@ rsecimplChart = function(data, sector, year) {
   cfilter = data %>% 
     filter(Sector==sector, Fiscal_Year%in%small, Transaction_type=='Disbursements') %>%
     group_by(Implementing_agency, Impl,  Fiscal_Year) %>% 
-      summarize(Total = sum(Current_amount)) %>%
+    summarize(Total = sum(Current_amount)) %>%
     filter(Total>100000) %>%
     arrange(desc(Total))
   
